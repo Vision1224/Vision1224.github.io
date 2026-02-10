@@ -368,12 +368,80 @@ class SkillsInteraction {
     }
 }
 
+// Stats Counter Animation
+class StatsCounter {
+    constructor() {
+        this.counters = document.querySelectorAll('.stat-number');
+        this.hasAnimated = false;
+        this.init();
+    }
+
+    init() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.hasAnimated) {
+                    this.hasAnimated = true;
+                    this.animateCounters();
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    }
+
+    animateCounters() {
+        this.counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target.toLocaleString();
+                }
+            };
+
+            updateCounter();
+        });
+    }
+}
+
+// Navigation Scroll Effect
+class NavigationScroll {
+    constructor() {
+        this.nav = document.querySelector('.nav');
+        this.init();
+    }
+
+    init() {
+        if (!this.nav) return;
+
+        window.addEventListener('scroll', utils.debounce(() => {
+            if (window.pageYOffset > 100) {
+                this.nav.classList.add('scrolled');
+            } else {
+                this.nav.classList.remove('scrolled');
+            }
+        }, 50));
+    }
+}
+
 // Console Easter Egg
 class ConsoleMessage {
     constructor() {
         this.showMessage();
     }
-    
+
     showMessage() {
         const styles = [
             'color: #00fff9',
@@ -381,7 +449,7 @@ class ConsoleMessage {
             'font-weight: bold',
             'text-shadow: 0 0 10px #00fff9'
         ].join(';');
-        
+
         console.log('%c> SYSTEM ACCESS GRANTED <', styles);
         console.log('%cWelcome, curious developer! 👨‍💻', 'color: #ff006e; font-size: 14px;');
         console.log('%cIf you\'re reading this, you\'re probably the kind of person I\'d like to work with.', 'color: #a0a0a0; font-size: 12px;');
@@ -476,7 +544,9 @@ class AccessibilityManager {
 document.addEventListener('DOMContentLoaded', () => {
     // Core functionality
     new Navigation();
+    new NavigationScroll();
     new ScrollProgress();
+    new StatsCounter();
     new PerformanceMonitor();
     new ClipboardManager();
     new BackToTop();
@@ -484,10 +554,10 @@ document.addEventListener('DOMContentLoaded', () => {
     new SkillsInteraction();
     new ConsoleMessage();
     new AccessibilityManager();
-    
+
     // Optional: Analytics (only if needed)
     // new AnalyticsTracker();
-    
+
     console.log('🚀 Resume website loaded successfully');
 });
 

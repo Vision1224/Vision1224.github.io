@@ -66,6 +66,9 @@
     </script>
 </head>
 <body>
+    <!-- Skip to Content Link -->
+    <a href="#main" class="skip-to-content">Skip to main content</a>
+
     <!-- Matrix Background Canvas -->
     <canvas id="matrix-bg" aria-hidden="true"></canvas>
     
@@ -78,6 +81,15 @@
         <!-- Hero Section -->
         <header class="hero" id="hero">
             <div class="hero-content">
+                <!-- Avatar -->
+                <div class="avatar-container">
+                    <div class="avatar-hexagon">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-icon">👨‍💻</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="terminal-prompt" aria-hidden="true">
                     <span class="prompt-symbol">$</span>
                     <span class="prompt-text">whoami</span>
@@ -115,8 +127,35 @@
         </header>
         
         <!-- Main Content -->
-        <main>
-            
+        <main id="main">
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="10">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="50000">0</div>
+                        <div class="stat-label">Lines of Code</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="20">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-label">Companies</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Divider -->
+            <div class="section-divider-enhanced">
+                <div class="divider-icon">⚡</div>
+            </div>
+
             <!-- About Section -->
             <section id="about" class="section about-section">
                 <div class="section-header">
@@ -148,7 +187,12 @@
                     </div>
                 </div>
             </section>
-            
+
+            <!-- Section Divider -->
+            <div class="section-divider-enhanced">
+                <div class="divider-icon">💼</div>
+            </div>
+
             <!-- Experience Section -->
             <section id="experience" class="section experience-section">
                 <div class="section-header">
@@ -386,7 +430,12 @@
                     
                 </div><!-- End Timeline -->
             </section>
-            
+
+            <!-- Section Divider -->
+            <div class="section-divider-enhanced">
+                <div class="divider-icon">🎓</div>
+            </div>
+
             <!-- Education Section -->
             <section id="education" class="section education-section">
                 <div class="section-header">
@@ -442,7 +491,12 @@
                     
                 </div>
             </section>
-            
+
+            <!-- Section Divider -->
+            <div class="section-divider-enhanced">
+                <div class="divider-icon">⚙️</div>
+            </div>
+
             <!-- Skills Section -->
             <section id="skills" class="section skills-section">
                 <div class="section-header">
@@ -558,7 +612,12 @@
                     
                 </div>
             </section>
-            
+
+            <!-- Section Divider -->
+            <div class="section-divider-enhanced">
+                <div class="divider-icon">📧</div>
+            </div>
+
             <!-- Contact Section -->
             <section id="contact" class="section contact-section">
                 <div class="section-header">
