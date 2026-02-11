@@ -1,0 +1,623 @@
+/* ===================================
+   CYBERPUNK THEME STYLESHEET
+   Visual effects, animations, and cyberpunk aesthetics
+   =================================== */
+
+/* ===================================
+   MATRIX BACKGROUND CANVAS
+   =================================== */
+#matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-background);
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* ===================================
+   SCANLINE OVERLAY
+   =================================== */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-background);
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    opacity: 0.03;
+    animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline-move {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(10px);
+    }
+}
+
+/* ===================================
+   GLITCH TEXT EFFECT
+   =================================== */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.glitch-text:hover::before,
+.glitch-text:hover::after {
+    opacity: 1;
+}
+
+.glitch-text::before {
+    color: var(--accent-cyan);
+    animation: glitch-1 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    z-index: -1;
+}
+
+.glitch-text::after {
+    color: var(--accent-magenta);
+    animation: glitch-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+    z-index: -1;
+}
+
+@keyframes glitch-1 {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-2 {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(2px, -2px);
+    }
+    40% {
+        transform: translate(2px, 2px);
+    }
+    60% {
+        transform: translate(-2px, -2px);
+    }
+    80% {
+        transform: translate(-2px, 2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* ===================================
+   TYPING ANIMATION
+   =================================== */
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid var(--accent-cyan);
+    white-space: nowrap;
+    animation: 
+        typing 2s steps(8, end) 1s both,
+        blink-cursor 0.75s step-end infinite;
+    max-width: 0;
+}
+
+@keyframes typing {
+    from {
+        max-width: 0;
+    }
+    to {
+        max-width: 100%;
+    }
+}
+
+@keyframes blink-cursor {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--accent-cyan);
+    }
+}
+
+/* Remove cursor after animation completes */
+.typing-text.typed {
+    border-right: none;
+    animation: none;
+    max-width: 100%;
+}
+
+/* ===================================
+   NEON GLOW EFFECTS
+   =================================== */
+.neon-glow-cyan {
+    box-shadow: 
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 20px var(--accent-cyan),
+        0 0 40px var(--accent-cyan);
+}
+
+.neon-glow-magenta {
+    box-shadow: 
+        0 0 5px var(--accent-magenta),
+        0 0 10px var(--accent-magenta),
+        0 0 20px var(--accent-magenta),
+        0 0 40px var(--accent-magenta);
+}
+
+/* Subtle glow on interactive elements */
+.nav-link:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 249, 0.5);
+}
+
+.job-title:hover {
+    text-shadow: 0 0 10px rgba(0, 255, 249, 0.3);
+}
+
+/* ===================================
+   CYBERPUNK BORDERS & ACCENTS
+   =================================== */
+.cyber-border {
+    position: relative;
+}
+
+.cyber-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        45deg,
+        var(--accent-cyan),
+        var(--accent-magenta),
+        var(--accent-purple),
+        var(--accent-cyan)
+    );
+    background-size: 400% 400%;
+    border-radius: var(--radius-md);
+    z-index: -1;
+    animation: gradient-shift 3s ease infinite;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.cyber-border:hover::before {
+    opacity: 1;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===================================
+   HOLOGRAPHIC EFFECTS
+   =================================== */
+.holographic {
+    background: linear-gradient(
+        125deg,
+        rgba(0, 255, 249, 0.1) 0%,
+        rgba(255, 0, 110, 0.1) 50%,
+        rgba(176, 38, 255, 0.1) 100%
+    );
+    background-size: 200% 200%;
+    animation: holographic-shift 5s ease infinite;
+}
+
+@keyframes holographic-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ===================================
+   CIRCUIT BOARD PATTERN (Optional Background)
+   =================================== */
+.circuit-pattern {
+    background-image: 
+        linear-gradient(rgba(0, 255, 249, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 249, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* ===================================
+   DATA STREAM ANIMATION
+   =================================== */
+.data-stream {
+    position: relative;
+    overflow: hidden;
+}
+
+.data-stream::after {
+    content: '01010101010101010101010101010101010101010101';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    color: var(--accent-cyan);
+    opacity: 0.05;
+    font-family: var(--font-terminal);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    animation: data-flow 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes data-flow {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ===================================
+   HEXAGON CLIP-PATH EFFECTS
+   =================================== */
+.hex-clip {
+    clip-path: polygon(
+        30% 0%, 70% 0%,
+        100% 30%, 100% 70%,
+        70% 100%, 30% 100%,
+        0% 70%, 0% 30%
+    );
+}
+
+/* ===================================
+   PULSATING ELEMENTS
+   =================================== */
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 249, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 249, 0.6);
+    }
+}
+
+/* ===================================
+   CHROMATIC ABERRATION (Subtle)
+   =================================== */
+.chromatic-text {
+    position: relative;
+}
+
+.chromatic-text::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -1px;
+    text-shadow: -1px 0 var(--accent-cyan);
+    top: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.chromatic-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 1px;
+    text-shadow: 1px 0 var(--accent-magenta);
+    top: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.chromatic-text:hover::before,
+.chromatic-text:hover::after {
+    opacity: 0.7;
+}
+
+/* ===================================
+   LOADING BAR ANIMATION
+   =================================== */
+.loading-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 255, 249, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-cyan),
+        transparent
+    );
+    animation: loading-slide 2s ease-in-out infinite;
+}
+
+@keyframes loading-slide {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* ===================================
+   GRID OVERLAY
+   =================================== */
+.grid-overlay {
+    position: relative;
+}
+
+.grid-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(0, 255, 249, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 249, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ===================================
+   TERMINAL CURSOR ANIMATION
+   =================================== */
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: var(--accent-cyan);
+    animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ===================================
+   CYBERPUNK SCROLL INDICATOR
+   =================================== */
+.scroll-indicator {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 40px;
+    background: rgba(0, 255, 249, 0.2);
+    border-radius: 2px;
+    z-index: var(--z-elevated);
+}
+
+.scroll-indicator::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: var(--accent-cyan);
+    border-radius: 2px;
+    animation: scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+}
+
+/* ===================================
+   HOVER LIFT EFFECT
+   =================================== */
+.hover-lift {
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 10px 30px rgba(0, 255, 249, 0.2),
+        0 0 20px rgba(0, 255, 249, 0.1);
+}
+
+/* ===================================
+   CODE BLOCK STYLING
+   =================================== */
+code,
+pre {
+    font-family: var(--font-terminal);
+    background: rgba(0, 255, 249, 0.05);
+    border: 1px solid rgba(0, 255, 249, 0.2);
+    border-radius: var(--radius-sm);
+}
+
+code {
+    padding: 0.2em 0.4em;
+    font-size: 0.9em;
+    color: var(--accent-cyan);
+}
+
+pre {
+    padding: var(--spacing-md);
+    overflow-x: auto;
+    line-height: 1.5;
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* ===================================
+   CYBERPUNK SECTION DIVIDERS
+   =================================== */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-cyan),
+        var(--accent-magenta),
+        transparent
+    );
+    margin: var(--spacing-xl) 0;
+    opacity: 0.3;
+}
+
+/* ===================================
+   RESPONSIVE ADJUSTMENTS
+   =================================== */
+
+/* Reduce effects on mobile for performance */
+@media (max-width: 767px) {
+    .scanlines {
+        display: none;
+    }
+    
+    #matrix-bg {
+        opacity: 0.02;
+    }
+    
+    .glitch-text::before,
+    .glitch-text::after {
+        display: none;
+    }
+}
+
+/* ===================================
+   ACCESSIBILITY - REDUCED MOTION
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+    .scanlines {
+        animation: none;
+    }
+    
+    .typing-text {
+        animation: none;
+        border-right: none;
+        max-width: 100%;
+    }
+    
+    .glitch-text::before,
+    .glitch-text::after {
+        display: none;
+    }
+    
+    .data-stream::after {
+        display: none;
+    }
+    
+    .pulse-glow {
+        animation: none;
+    }
+    
+    .loading-bar::after {
+        animation: none;
+    }
+    
+    .scroll-indicator::after {
+        animation: none;
+    }
+}
+
+/* ===================================
+   PRINT - REMOVE EFFECTS
+   =================================== */
+@media print {
+    #matrix-bg,
+    .scanlines,
+    .glitch-text::before,
+    .glitch-text::after,
+    .data-stream::after,
+    .scroll-indicator {
+        display: none;
+    }
+    
+    .neon-glow-cyan,
+    .neon-glow-magenta,
+    .nav-link:hover,
+    .job-title:hover {
+        text-shadow: none;
+        box-shadow: none;
+    }
+}
