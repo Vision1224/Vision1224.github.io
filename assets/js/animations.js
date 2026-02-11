@@ -37,12 +37,12 @@ class MatrixRain {
     }
     
     animate() {
-        // Semi-transparent black to create fade effect
-        this.ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
+        // Semi-transparent dark to create fade effect
+        this.ctx.fillStyle = 'rgba(15, 20, 25, 0.05)';
         this.ctx.fillRect(0, 0, this.width, this.height);
-        
-        // Cyan text color for matrix effect
-        this.ctx.fillStyle = '#00fff9';
+
+        // Professional cyan for matrix effect
+        this.ctx.fillStyle = '#4fc3f7';
         this.ctx.font = `${this.fontSize}px monospace`;
         
         for (let i = 0; i < this.drops.length; i++) {
@@ -357,3 +357,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 })();
+
+

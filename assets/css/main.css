@@ -7,18 +7,18 @@
    CSS CUSTOM PROPERTIES (VARIABLES)
    =================================== */
 :root {
-    /* Color Palette */
-    --primary-bg: #0a0e27;
-    --secondary-bg: #1a1f3a;
-    --card-bg: #151933;
-    --accent-cyan: #00fff9;
-    --accent-magenta: #ff006e;
-    --accent-purple: #b026ff;
-    --text-primary: #e0e0e0;
-    --text-secondary: #a0a0a0;
-    --text-muted: #6b7280;
-    --terminal-green: #00ff41;
-    --warning-red: #ff3864;
+    /* Color Palette - Dark Slate Professional */
+    --primary-bg: #0f1419;
+    --secondary-bg: #1a1f2e;
+    --card-bg: #1e2433;
+    --accent-cyan: #4fc3f7;
+    --accent-magenta: #4fc3f7;
+    --accent-purple: #4fc3f7;
+    --text-primary: #e8eaed;
+    --text-secondary: #9aa5b1;
+    --text-muted: #6b7684;
+    --terminal-green: #66bb6a;
+    --warning-red: #ef5350;
     
     /* Typography */
     --font-display: 'Orbitron', monospace;
@@ -42,8 +42,8 @@
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
-    --shadow-glow-cyan: 0 0 20px rgba(0, 255, 249, 0.3);
-    --shadow-glow-magenta: 0 0 20px rgba(255, 0, 110, 0.3);
+    --shadow-glow-cyan: 0 0 20px rgba(79, 195, 247, 0.25);
+    --shadow-glow-magenta: 0 0 20px rgba(79, 195, 247, 0.25);
     
     /* Transitions */
     --transition-fast: 0.15s ease;
@@ -771,10 +771,9 @@ h1.glitch-text {
     width: 180px;
     height: 180px;
     clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+    background: var(--accent-cyan);
     padding: 3px;
     margin: 0 auto;
-    animation: rotate-slow 20s linear infinite;
 }
 
 @keyframes rotate-slow {
@@ -925,12 +924,10 @@ h1.glitch-text {
     content: '';
     position: absolute;
     inset: -2px;
-    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta), var(--accent-purple), var(--accent-cyan));
-    background-size: 300% 300%;
+    background: var(--accent-cyan);
     border-radius: var(--radius-lg);
     z-index: -1;
-    opacity: 0.3;
-    animation: gradient-rotate 6s linear infinite;
+    opacity: 0.15;
 }
 
 @keyframes gradient-rotate {
@@ -996,29 +993,18 @@ h1.glitch-text {
    =================================== */
 .timeline::before {
     width: 3px;
-    background: linear-gradient(
-        180deg,
-        transparent,
-        var(--accent-cyan) 20%,
-        var(--accent-magenta) 50%,
-        var(--accent-purple) 80%,
-        transparent
-    );
+    background: linear-gradient(180deg, transparent, var(--accent-cyan), transparent);
 }
 
-.timeline-item:nth-child(odd) .timeline-content {
+.timeline-item .timeline-content {
     border-left: 3px solid var(--accent-cyan);
-}
-
-.timeline-item:nth-child(even) .timeline-content {
-    border-left: 3px solid var(--accent-magenta);
 }
 
 /* Highlight current job */
 .timeline-item:first-child .card {
     border: 2px solid var(--accent-cyan);
-    box-shadow: 0 0 30px rgba(0, 255, 249, 0.2);
-    background: linear-gradient(135deg, rgba(0, 255, 249, 0.05), rgba(255, 0, 110, 0.05));
+    box-shadow: 0 0 30px rgba(51, 255, 51, 0.3);
+    background: rgba(51, 255, 51, 0.05);
 }
 
 .timeline-item:first-child .job-header {
