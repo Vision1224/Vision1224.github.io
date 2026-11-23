@@ -21,6 +21,9 @@
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d0f12'/%3E%3Ccircle cx='9' cy='16' r='4' fill='%23f2b84b'/%3E%3Cpath d='M13 16h10' stroke='%23e9e4d8' stroke-width='2'/%3E%3Ccircle cx='23' cy='16' r='3' fill='none' stroke='%23e9e4d8' stroke-width='2'/%3E%3C/svg%3E">
 
+  <!-- Marks that scripting is on, so scroll reveals only apply when they can finish. -->
+  <script>document.documentElement.classList.add("js");</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -32,7 +35,7 @@
     "@type": "Person",
     "name": "Damian Valencia",
     "jobTitle": "Automation and Support Engineer",
-    "email": "mailto:damianv2420@gmail.com",
+    "email": "damianv2420@gmail.com",
     "url": "https://vision1224.github.io/",
     "sameAs": ["https://github.com/Vision1224"],
     "alumniOf": [
@@ -51,7 +54,7 @@
 
   <header class="top">
     <a class="brand" href="#top" aria-label="Damian Valencia, home">
-      <span class="brand-dot" aria-hidden="true"></span> dv
+      <span class="brand-dot" aria-hidden="true"></span>dv
     </a>
     <nav aria-label="Main">
       <a href="#work">Work</a>
@@ -65,7 +68,7 @@
 
     <!-- HERO -->
     <section class="hero" id="top">
-      <p class="eyebrow">Automation &amp; Support Engineering · El Paso, TX</p>
+      <p class="eyebrow">Automation &amp; Support Engineering · El&nbsp;Paso,&nbsp;TX</p>
       <h1>Damian<br><span class="accent">Valencia.</span></h1>
       <p class="lede">I build workflows that do the repetitive work, and keep a person in the loop wherever judgment matters.</p>
       <div class="cta">
@@ -73,29 +76,31 @@
         <a class="btn" href="https://github.com/Vision1224" rel="noopener">GitHub profile</a>
       </div>
 
-      <!-- Pipeline diagram -->
-      <div class="pipeline" role="img" aria-label="Automation pipeline: ingest, claim, tailor, check, gate, submit, report. The gate holds work for human review before anything is sent.">
-        <div class="node"><span class="node-id">01</span>Ingest</div>
-        <div class="node"><span class="node-id">02</span>Claim</div>
-        <div class="node"><span class="node-id">03</span>Tailor</div>
-        <div class="node"><span class="node-id">04</span>Check</div>
-        <div class="node gate"><span class="node-id">05</span>Gate<span class="badge">HOLD</span></div>
-        <div class="node"><span class="node-id">06</span>Act</div>
-        <div class="node"><span class="node-id">07</span>Report</div>
-        <span class="track" aria-hidden="true"></span>
+      <!-- Pipeline diagram: pulses travel left to right and stop at the gate. -->
+      <div class="pipeline" role="img" aria-label="Automation pipeline: ingest, claim, tailor, check, gate, act, report. The gate holds work for human review before anything is sent.">
+        <div class="node" style="--i:0"><span class="node-id">01</span>Ingest</div>
+        <div class="node" style="--i:1"><span class="node-id">02</span>Claim</div>
+        <div class="node" style="--i:2"><span class="node-id">03</span>Tailor</div>
+        <div class="node" style="--i:3"><span class="node-id">04</span>Check</div>
+        <div class="node gate" style="--i:4"><span class="node-id">05</span>Gate<span class="badge">HOLD</span></div>
+        <div class="node" style="--i:5"><span class="node-id">06</span>Act</div>
+        <div class="node" style="--i:6"><span class="node-id">07</span>Report</div>
       </div>
 
       <!-- Example run -->
-      <div class="console" aria-label="Example automation run">
-        <div class="console-bar"><span></span><span></span><span></span><em>example run · illustrative</em></div>
-        <pre><code><span class="p">$</span> run pipeline --dry-run
-<span class="ok">✓</span> ingest      12 items read
-<span class="ok">✓</span> claim       1 item locked, no duplicates
-<span class="ok">✓</span> tailor      resume matched to posting
-<span class="warn">!</span> check       1 open question flagged
-<span class="warn">■</span> gate        HOLD: waiting for human review
-<span class="ok">✓</span> report      written, nothing sent</code></pre>
-      </div>
+      <figure class="console">
+        <figcaption class="console-bar">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+          <span class="title">example run · illustrative</span>
+        </figcaption>
+        <pre tabindex="0"><code><span class="line" style="--i:0"><span class="p">$</span> run pipeline --dry-run</span>
+<span class="line" style="--i:1"><span class="ok">✓</span> ingest      12 items read</span>
+<span class="line" style="--i:2"><span class="ok">✓</span> claim       1 item locked, no duplicates</span>
+<span class="line" style="--i:3"><span class="ok">✓</span> tailor      resume matched to posting</span>
+<span class="line" style="--i:4"><span class="warn">!</span> check       1 open question flagged</span>
+<span class="line" style="--i:5"><span class="warn">■</span> gate        HOLD: waiting for human review</span>
+<span class="line" style="--i:6"><span class="ok">✓</span> report      written, nothing sent</span></code></pre>
+      </figure>
     </section>
 
     <!-- FACTS -->
@@ -108,41 +113,39 @@
     </section>
 
     <!-- WHAT I AUTOMATE -->
-    <section class="section" aria-labelledby="automate-title">
-      <header class="sec-head">
-        <p class="sec-num">01</p>
-        <h2 id="automate-title">What I automate</h2>
-      </header>
+    <section class="section" id="automate" aria-labelledby="automate-title">
+      <h2 id="automate-title">What I automate</h2>
       <div class="cards">
         <article class="card reveal">
           <h3>Workflow automation</h3>
           <p>n8n, Python and PowerShell jobs that claim work, check it, and record every step in a log someone can read.</p>
-          <p class="tags"><span>n8n</span><span>Python</span><span>PowerShell</span><span>Claude</span></p>
+          <ol class="flow" aria-label="Steps"><li>Claim</li><li>Check</li><li>Log</li></ol>
+          <ul class="tags"><li>n8n</li><li>Python</li><li>PowerShell</li><li>Claude</li></ul>
         </article>
         <article class="card reveal">
           <h3>Human checkpoints</h3>
           <p>Every automated action passes a check. Holds are visible and explained, never silent. People approve what matters.</p>
-          <p class="tags"><span>Review gates</span><span>Audit logs</span><span>Dry runs</span></p>
+          <ol class="flow" aria-label="Steps"><li>Check</li><li class="hold">Hold</li><li>Approve</li></ol>
+          <ul class="tags"><li>Review gates</li><li>Audit logs</li><li>Dry runs</li></ul>
         </article>
         <article class="card reveal">
           <h3>Data integration</h3>
           <p>SSIS packages, SQL Server procedures and ETL patterns, with validation before any data moves between systems.</p>
-          <p class="tags"><span>SSIS</span><span>SQL Server</span><span>ETL</span><span>Oracle</span></p>
+          <ol class="flow" aria-label="Steps"><li>Validate</li><li>Move</li></ol>
+          <ul class="tags"><li>SSIS</li><li>SQL Server</li><li>ETL</li><li>Oracle</li></ul>
         </article>
         <article class="card reveal">
           <h3>Support engineering</h3>
           <p>Escalations, triage and SLA tracking for SaaS customers, plus the runbooks that keep the next fix faster.</p>
-          <p class="tags"><span>Triage</span><span>API troubleshooting</span><span>Runbooks</span></p>
+          <ol class="flow" aria-label="Steps"><li>Triage</li><li>Escalate</li><li>Runbook</li></ol>
+          <ul class="tags"><li>Triage</li><li>API troubleshooting</li><li>Runbooks</li></ul>
         </article>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
     <section class="section" id="work" aria-labelledby="work-title">
-      <header class="sec-head">
-        <p class="sec-num">02</p>
-        <h2 id="work-title">Experience</h2>
-      </header>
+      <h2 id="work-title">Experience</h2>
       <ol class="timeline" data-timeline>
         <li class="job reveal">
           <div class="job-meta"><time datetime="2026-02">Feb 2026 – Nov 2026</time><span>SpyCloud · El Paso, TX (Remote)</span></div>
@@ -211,11 +214,8 @@
 
     <!-- EDUCATION -->
     <section class="section" aria-labelledby="edu-title">
-      <header class="sec-head">
-        <p class="sec-num">03</p>
-        <h2 id="edu-title">Education</h2>
-      </header>
-      <div class="cards two">
+      <h2 id="edu-title">Education</h2>
+      <div class="cards">
         <article class="card reveal">
           <p class="meta">University of Texas at El Paso · 2012–2016</p>
           <h3>B.S. in Computer Science</h3>
@@ -231,40 +231,34 @@
 
     <!-- PROJECTS -->
     <section class="section" id="projects" aria-labelledby="projects-title">
-      <header class="sec-head">
-        <p class="sec-num">04</p>
-        <h2 id="projects-title">Public projects</h2>
-      </header>
-      <div class="cards two">
+      <h2 id="projects-title">Public projects</h2>
+      <div class="cards">
         <a class="card project reveal" href="https://github.com/Vision1224/cybersec-automation" rel="noopener">
           <h3>cybersec-automation</h3>
           <p>Security automation scripts and API integration examples.</p>
-          <span class="go">View on GitHub →</span>
+          <span class="go">View on GitHub <span aria-hidden="true">→</span></span>
         </a>
         <a class="card project reveal" href="https://github.com/Vision1224/sql-optimizer-toolkit" rel="noopener">
           <h3>sql-optimizer-toolkit</h3>
           <p>SQL Server query optimization and performance analysis tools.</p>
-          <span class="go">View on GitHub →</span>
+          <span class="go">View on GitHub <span aria-hidden="true">→</span></span>
         </a>
         <a class="card project reveal" href="https://github.com/Vision1224/ssis-package-validator" rel="noopener">
           <h3>ssis-package-validator</h3>
           <p>Validates SSIS packages and detects configuration errors before they run.</p>
-          <span class="go">View on GitHub →</span>
+          <span class="go">View on GitHub <span aria-hidden="true">→</span></span>
         </a>
         <a class="card project reveal" href="https://github.com/Vision1224/data-integration-patterns" rel="noopener">
           <h3>data-integration-patterns</h3>
           <p>ETL patterns and data integration best practices.</p>
-          <span class="go">View on GitHub →</span>
+          <span class="go">View on GitHub <span aria-hidden="true">→</span></span>
         </a>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section class="section" id="skills" aria-labelledby="skills-title">
-      <header class="sec-head">
-        <p class="sec-num">05</p>
-        <h2 id="skills-title">Skills</h2>
-      </header>
+      <h2 id="skills-title">Skills</h2>
       <dl class="skill-list">
         <div><dt>Automation &amp; AI</dt><dd>n8n · Claude · Playwright · MCP servers · workflow design · human-in-the-loop review</dd></div>
         <div><dt>Languages</dt><dd>C# · SQL · Python · PowerShell · Java · JavaScript · Angular · React · C · .NET · HTML/CSS</dd></div>
@@ -277,10 +271,7 @@
 
     <!-- CONTACT -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
-      <header class="sec-head">
-        <p class="sec-num">06</p>
-        <h2 id="contact-title">Contact</h2>
-      </header>
+      <h2 id="contact-title">Contact</h2>
       <p class="contact-lede">Open to automation and support engineering roles, and to projects where workflows need to be reliable and reviewable.</p>
       <p class="contact-links">
         <a class="big" href="mailto:damianv2420@gmail.com">damianv2420@gmail.com</a>
